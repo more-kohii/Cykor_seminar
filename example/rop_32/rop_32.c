@@ -1,4 +1,4 @@
-//gcc -o rop_32 rop_32.c -m32 -mpreferred-stack-boundary=2 -fno-pic -no-pie -fno-stack-protector
+//gcc -o rop_32 rop_32.c -m32 -mpreferred-stack-boundary=2 -no-pie -fno-stack-protector
 #include <stdlib.h>
 #include <stdio.h>
 
