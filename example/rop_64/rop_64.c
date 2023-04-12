@@ -1,3 +1,4 @@
+//gcc -o rop_64 rop_64.c -mpreferred-stack-boundary=4 -no-pie -fno-stack-protector
 #include <stdio.h>
 
 void init(){
@@ -11,8 +12,8 @@ int main()
     
     init();
 
+    puts("Time to do x64 ROP");
     gets(buf);
-    puts(buf);
 
-    return 0;   
+    return 0;
 }
