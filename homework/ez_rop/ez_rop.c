@@ -32,6 +32,11 @@ int main()
     
     printf("Input length??\n");
     scanf("%d", &length);
+    if (length > 0x100)
+    {
+        printf("Wrong length\n");
+        exit(0);
+    }
 
     input(length);
 }
